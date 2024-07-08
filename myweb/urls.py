@@ -18,9 +18,11 @@ from django.contrib import admin
 from django.urls import path
 from about import views
 from blog import views as vblog
+from contact import views as vcontact
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
-    path('blog/', vblog.blog),
+    path('', views.index, name='index'),
+    path('blog/', vblog.blog, name='blog'),
+    path('contact/', vcontact.contact, name='contact'),
 ]
