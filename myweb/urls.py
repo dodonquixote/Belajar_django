@@ -19,10 +19,12 @@ from django.urls import path
 from about import views
 from blog import views as vblog
 from contact import views as vcontact
+from login import views as vlogin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('blog/', vblog.blog, name='blog'),
     path('contact/', vcontact.contact, name='contact'),
+    path('login/', vlogin.login_views, name='login'),
 ]
