@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .forms import FormLogin
 
-# Create your views here.
 def login_views(request):
     form = FormLogin()
     
@@ -15,10 +14,12 @@ def login_views(request):
 
             if user is not None:
                 login(request, user)
-                return redirect('/login/dashboard')
+                return redirect('/dashboard')
     
     return render(request, 'login/login_views.html', {'form': form})
 
-def dashboard(request):
-    context = {}
-    return render(request, 'login/dashboard.html', context)
+
+def logout_view(request):
+    logout(request)
+    request.session.flush()
+    return redirect('/login/')

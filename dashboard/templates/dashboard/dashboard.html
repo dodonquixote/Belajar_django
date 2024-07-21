@@ -6,6 +6,7 @@
     <title>Dashboard Login</title>
 </head>
 <body>
-    <h1>Selamat datang di halaman admin</h1>
+    <h1>Selamat datang di halaman {{ request.user }} </h1>
+    <a href="{% url 'logout' %}">logout</a>
 </body>
 </html>
