@@ -7,3 +7,8 @@ from django.conf import settings
 def profil(request):
     context = {}
     return render(request, 'profil/profil.html', context)
+
+@login_required(login_url=settings.LOGIN_URL)
+def edit_profil(request):
+    context = {}
+    return render(request, 'profil/edit_profil.html', context)
