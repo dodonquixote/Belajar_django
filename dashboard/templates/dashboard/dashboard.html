@@ -157,8 +157,10 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                kosong 1</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">kosong</div>
+                                                Nama</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                {{ datamahasiswa.nama }}
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -175,8 +177,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                kosong 2</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">kosong</div>
+                                                NPM</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ request.user }}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -192,11 +194,11 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">kosong 3
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Kelas
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">kosong</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ datamahasiswa.kelas }}</div>
                                                 </div>
                                                 
                                             </div>
@@ -216,8 +218,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                kosong 4</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">kosong</div>
+                                                Jurusan</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ datamahasiswa.jurusan }}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>

@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from .forms import FormLogin
+from .forms import *
+
+
 
 def login_views(request):
     form = FormLogin()
@@ -17,7 +19,6 @@ def login_views(request):
                 return redirect('/dashboard')
     
     return render(request, 'login/login_views.html', {'form': form})
-
 
 def logout_view(request):
     logout(request)
