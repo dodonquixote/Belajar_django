@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import ContactMassage
 
-# Register your models here.
+@admin.register(ContactMassage)
+class ContactMassageAdmin(admin.ModelAdmin):
+    list_display=['nama']

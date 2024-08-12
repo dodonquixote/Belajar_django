@@ -6,47 +6,33 @@
     <title>Contact</title>
 </head>
 <body>
+  {% block content %}
+  <div class="container">
+      <form method="POST" action="{% url 'sendmassage' %}" style="width: 30rem;">
+        {% csrf_token %}
 
-        {% block content%}
-            <div class="container">
-                <form style="width: 30rem;">
-                    <!-- Name input -->
-                    <div data-mdb-input-init class="form-outline mb-4">
-                      <label class="form-label" for="form4Example1">Name</label>
-                      <input type="text" id="form4Example1" class="form-control" />
-                    </div>
-                  
-                    <!-- Email input -->
-                    <div data-mdb-input-init class="form-outline mb-4">
-                      <label class="form-label" for="form4Example2">Email address</label>
-                      <input type="email" id="form4Example2" class="form-control" />
-                    </div>
-                  
-                    <!-- Message input -->
-                    <div data-mdb-input-init class="form-outline mb-4">
-                      <label class="form-label" for="form4Example3">Message</label>
-                      <textarea class="form-control" id="form4Example3" rows="4"></textarea>
-                    </div>
-                  
-                    <!-- Checkbox -->
-                    <div class="form-check d-flex justify-content mb-4">
-                      <input
-                        class="form-check-input me-2"
-                        type="checkbox"
-                        value=""
-                        id="form4Example4"
-                        checked
-                      />
-                      <label class="form-check-label" for="form4Example4">
-                        Send me a copy of this message
-                      </label>
-                    </div>
-                  
-                    <!-- Submit button -->
-                    <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4">Send</button>
-                  </form>
-            </div>
-        {% endblock content%}    
+          <!-- Name input -->
+          <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="form4Example1">Name</label>
+            {{ form.nama }}
+          </div>
+        
+          <!-- Email input -->
+          <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="form4Example1">Email</label>
+            {{ form.email }}
+          </div>
+        
+          <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="form4Example1">Pesan</label>
+            {{ form.pesan }}
+          </div>
+        
+          <!-- Submit button -->
+          <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+      </form>
+  </div>
+  {% endblock content %}
 
 </body>
 </html>
