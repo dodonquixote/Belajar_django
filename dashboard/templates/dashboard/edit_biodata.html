@@ -1,0 +1,160 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+    
+        <title>Biodata</title>
+    
+        <!-- Custom fonts for this template-->
+        <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+        <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+    
+        <!-- Custom styles for this template-->
+        <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    
+    </head>
+
+{% block content %}
+
+<body>
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div
+                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Update Biodata</h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="col-lg-8">
+
+                    <form action="{% url 'update_biodata' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Nama</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" class="form-control" readonly value="{{ request.user.first_name }} {{ request.user.last_name }}">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">NPM</h6>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" readonly name="user" value="{{ request.user }}">
+                                    </div>
+                                </div>
+                        
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Email</h6>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="email" value="{{ profilmahasiswa.email }}">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">NO Telepon</h6>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="nomor" value="{{ profilmahasiswa.nomor }}">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Jenis Kelamin</h6>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" name="jenis_kelamin">
+                                            <option value="laki-laki" {% if biodatamahasiswa.jenis_kelamin == 'laki-laki' %}selected{% endif %}>Laki-laki</option>
+                                            <option value="perempuan" {% if biodatamahasiswa.jenis_kelamin == 'perempuan' %}selected{% endif %}>Perempuan</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Tempat Lahir</h6>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="tempat_lahir" value="{{ biodatamahasiswa.tempat_lahir }}">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Tanggal Lahir</h6>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="date" class="form-control" name="tanggal_lahir" value="{{ biodatamahasiswa.tanggal_lahir|date:'Y-m-d' }}">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">NIK</h6>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="nik" value="{{ biodatamahasiswa.nik }}">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Alamat</h6>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <textarea class="form-control" name="alamat">{{ profilmahasiswa.alamat }}</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Foto</h6>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <!-- Menampilkan gambar yang sudah ada, jika ada -->
+                                        {% if biodatamahasiswa.foto %}
+                                            <img src="{{ biodatamahasiswa.foto.url }}" alt="Foto" class="img-thumbnail mb-2" style="max-width: 150px;">
+                                        {% endif %}
+                                        <!-- Input file untuk mengunggah gambar -->
+                                        <input type="file" class="form-control" name="foto">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-9">
+                                        <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock content %}
+
+</html>
