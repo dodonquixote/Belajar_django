@@ -5,16 +5,19 @@ from django.conf import settings
 from django.contrib import messages
 from .models import *
 from .forms import ProfilMahasiswaForm
+from dashboard.models import BiodataMahasiswa
 
 @login_required(login_url=settings.LOGIN_URL)
 def profil(request):
     profilmahasiswa = get_object_or_404(ProfilMahasiswa, user=request.user)
-    return render(request, 'profil/profil.html', {'profilmahasiswa': profilmahasiswa})
+    biodatamahasiswa = get_object_or_404(BiodataMahasiswa, user=request.user)
+    return render(request, 'profil/profil.html', {'profilmahasiswa': profilmahasiswa, 'biodatamahasiswa': biodatamahasiswa})
 
 @login_required(login_url=settings.LOGIN_URL)
 def edit_profil(request):
     profilmahasiswa = get_object_or_404(ProfilMahasiswa, user=request.user)
-    return render(request, 'profil/edit_profil.html', {'profilmahasiswa': profilmahasiswa})
+    biodatamahasiswa = get_object_or_404(BiodataMahasiswa, user=request.user)
+    return render(request, 'profil/edit_profil.html', {'profilmahasiswa': profilmahasiswa, 'biodatamahasiswa': biodatamahasiswa})
 
 def updated_profil(request):
     profilmahasiswa = ProfilMahasiswa.objects.get(user=request.user)

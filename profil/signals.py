@@ -6,6 +6,7 @@ from .models import DataMahasiswa, ProfilMahasiswa
 @receiver(post_save, sender=User)
 def create_user_related_data(sender, instance, created, **kwargs):
     if created:
-        # Create DataMahasiswa and ProfilMahasiswa when a new User is created
+        # membuat DataMahasiswa and ProfilMahasiswa ketika User baru dibuat
         DataMahasiswa.objects.create(user=instance)
         ProfilMahasiswa.objects.create(user=instance)
+
