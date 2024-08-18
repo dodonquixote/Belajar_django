@@ -10,6 +10,7 @@ urlpatterns = [
     path('biodata', views.biodata, name="biodata"),
     path('biodata/update', views.updateBiodata, name="update_biodata"),
     path('nilai-mahasiswa', views.nilaiMahasiswa, name="nilai"),
+    path('jadwal-kuliah', views.jadwalKuliah, name="jadwal"),
 
 ]
 
