@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from profil.models import DataMahasiswa, ProfilMahasiswa
 from profil.forms import ProfilMahasiswaForm
-from .models import BiodataMahasiswa
+from .models import BiodataMahasiswa, JadwalKuliah, NilaiMahasiswa, MataKuliah
 from .forms import BiodataMahasiswaForm
 from django.contrib import messages
 
@@ -49,8 +49,24 @@ def updateBiodata(request):
         'profilmahasiswa': profil
     })
 
+@login_required(login_url=settings.LOGIN_URL)
+def jadwalKuliah(request):
+    jadwal = JadwalKuliah.objects.all()
+    data = get_object_or_404(DataMahasiswa, user=request.user)
+    return render(request, 'dashboard/jadwal_kuliah.html', {'jadwal': jadwal, 'data': data})
+
 # render data dalam nilai page
 @login_required(login_url=settings.LOGIN_URL)
 def nilaiMahasiswa(request):
-    context={}
+    user = request.user
+    nilai = NilaiMahasiswa.objects.filter(user=user)
+    total_sks = NilaiMahasiswa.total_sks(user)
+    total_mutu = NilaiMahasiswa.total_mutu(user)
+    ipk = NilaiMahasiswa.ipk(user)
+    context = {
+        'nilai': nilai,
+        'total_sks': total_sks,
+        'total_mutu': total_mutu,
+        'ipk': ipk,
+    }
     return render(request, 'dashboard/nilai_mahasiswa.html', context)
