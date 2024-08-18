@@ -6,10 +6,14 @@ from dashboard.models import *
 class BiodataMahasiswaAdmin(admin.ModelAdmin):
     list_display=['user']
 
-# @admin.register(NilaiMahasiswa)
-# class NilaiMahasiswaAdmin(admin.ModelAdmin):
-#     list_display=['user']
+@admin.register(JadwalKuliah)
+class JadwalKuliahAdmin(admin.ModelAdmin):
+    list_display=['matkul']
 
-# @admin.register(MataKuliah)
-# class MataKuliahAdmin(admin.ModelAdmin):
-#     list_display=['nama']
+@admin.register(NilaiMahasiswa)
+class NilaiMahasiswaAdmin(admin.ModelAdmin):
+    list_display=['user', 'matkul']
+
+@admin.register(MataKuliah)
+class MataKuliahAdmin(admin.ModelAdmin):
+    list_display=['matkul']
