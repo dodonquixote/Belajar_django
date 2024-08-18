@@ -32,17 +32,4 @@ def updated_profil(request):
 
     return render(request, 'profil/edit_profil.html', {'form': form})
 
-# @login_required
-# def update_profile(request):
-#     if request.method == 'POST':
-#         form = UpdateProfilForm(request.POST, instance=request.user)
-#         if form.is_valid():
-#             form.save()  # Simpan perubahan
-#             return redirect('profil')  # Arahkan pengguna ke halaman profil
-#         else:
-#             form = UpdateProfilForm(instance=request.user)
-#     context = {
-#         'form': form
-#     }
-#     return render(request, 'profil/profil.html', context)
 
